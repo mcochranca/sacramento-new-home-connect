@@ -1,10 +1,13 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import PropertySearch from "@/components/PropertySearch";
+import DatabaseSetup from "@/components/DatabaseSetup";
 import PropertyCard from "@/components/PropertyCard";
 import AgentCard from "@/components/AgentCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Filter, ChevronRight, Star, Users, Home as HomeIcon, Heart } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Filter, ChevronRight, Star, Users, Home as HomeIcon, Heart, Search, Brain, Map, Zap } from "lucide-react";
 import property1 from "@/assets/property-1.jpg";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -62,6 +65,62 @@ const Index = () => {
       
       {/* Hero Section */}
       <Hero />
+
+      {/* Advanced Property Search Section */}
+      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Smart Property Search & Matching
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Our advanced AI-powered system learns your preferences and finds homes that perfectly match your family's needs. 
+              Experience the future of home searching.
+            </p>
+            
+            {/* Feature Highlights */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
+              <Card className="text-center p-4 hover:shadow-lg transition-shadow">
+                <Brain className="h-8 w-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold mb-2">Smart Matching</h3>
+                <p className="text-sm text-muted-foreground">AI learns your preferences</p>
+              </Card>
+              <Card className="text-center p-4 hover:shadow-lg transition-shadow">
+                <Map className="h-8 w-8 text-secondary mx-auto mb-3" />
+                <h3 className="font-semibold mb-2">Interactive Maps</h3>
+                <p className="text-sm text-muted-foreground">Explore neighborhoods visually</p>
+              </Card>
+              <Card className="text-center p-4 hover:shadow-lg transition-shadow">
+                <Zap className="h-8 w-8 text-accent mx-auto mb-3" />
+                <h3 className="font-semibold mb-2">Real-time Updates</h3>
+                <p className="text-sm text-muted-foreground">Live property availability</p>
+              </Card>
+              <Card className="text-center p-4 hover:shadow-lg transition-shadow">
+                <Star className="h-8 w-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold mb-2">Match Scoring</h3>
+                <p className="text-sm text-muted-foreground">See how well homes fit</p>
+              </Card>
+            </div>
+          </div>
+
+          <PropertySearch />
+        </div>
+      </section>
+
+      {/* Database Setup Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Database Setup Required
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Complete your Supabase database setup to enable all advanced features
+            </p>
+          </div>
+          <DatabaseSetup />
+        </div>
+      </section>
 
       {/* Featured Properties Section */}
       <section id="properties" className="py-20 bg-gradient-to-b from-background to-muted/30">
