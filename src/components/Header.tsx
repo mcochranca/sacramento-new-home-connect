@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Users, Search, Phone } from "lucide-react";
+import { Menu, X, Home, Users, Search, Phone, LogOut, User } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut, loading } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
@@ -42,10 +45,40 @@ const Header = () => {
               <Search className="h-4 w-4 mr-2" />
               Search
             </Button>
-            <Button variant="hero">
-              <Phone className="h-4 w-4 mr-2" />
-              Contact DJ
-            </Button>
+            
+            {!loading && (
+              <>
+                {user ? (
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <User className="h-4 w-4" />
+                      <span className="text-foreground/80">{user.email}</span>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={signOut}
+                      className="flex items-center space-x-2"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      <span>Sign Out</span>
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <Button variant="hero">
+                      <Phone className="h-4 w-4 mr-2" />
+                      Contact DJ
+                    </Button>
+                    <Link to="/auth">
+                      <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary-hover hover:to-secondary-hover">
+                        Sign In
+                      </Button>
+                    </Link>
+                  </>
+                )}
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,10 +113,39 @@ const Header = () => {
                   <Search className="h-4 w-4 mr-2" />
                   Search Properties
                 </Button>
-                <Button variant="hero">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Contact DJ Dawson
-                </Button>
+                
+                {!loading && (
+                  <>
+                    {user ? (
+                      <div className="flex flex-col space-y-3 pt-4 border-t border-border/50">
+                        <div className="flex items-center space-x-2 text-sm text-foreground/80">
+                          <User className="h-4 w-4" />
+                          <span>{user.email}</span>
+                        </div>
+                        <Button 
+                          variant="outline" 
+                          onClick={signOut}
+                          className="w-full flex items-center justify-center space-x-2"
+                        >
+                          <LogOut className="h-4 w-4" />
+                          <span>Sign Out</span>
+                        </Button>
+                      </div>
+                    ) : (
+                      <>
+                        <Button variant="hero">
+                          <Phone className="h-4 w-4 mr-2" />
+                          Contact DJ Dawson
+                        </Button>
+                        <Link to="/auth">
+                          <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary-hover hover:to-secondary-hover">
+                            Sign In
+                          </Button>
+                        </Link>
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             </nav>
           </div>
