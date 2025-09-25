@@ -186,32 +186,40 @@ const PropertyQuestionnaire = ({ onComplete, onClose }: QuestionnaireProps) => {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
                   <Label>Minimum Bedrooms</Label>
-                  <Select value={preferences.bedrooms_min?.toString()} onValueChange={(value) => 
-                    setPreferences(prev => ({ ...prev, bedrooms_min: parseInt(value) }))
+                   <Select value={preferences.bedrooms_min?.toString()} onValueChange={(value) => 
+                    setPreferences(prev => ({ 
+                      ...prev, 
+                      bedrooms_min: value === "undefined" ? undefined : parseInt(value) 
+                    }))
                   }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
-                      {[1, 2, 3, 4, 5].map(num => (
-                        <SelectItem key={num} value={num.toString()}>{num}+ bedrooms</SelectItem>
-                      ))}
-                    </SelectContent>
+                     <SelectContent>
+                       <SelectItem value="undefined">Select bedrooms</SelectItem>
+                       {[1, 2, 3, 4, 5].map(num => (
+                         <SelectItem key={num} value={num.toString()}>{num}+ bedrooms</SelectItem>
+                       ))}
+                     </SelectContent>
                   </Select>
                 </div>
                 <div>
                   <Label>Minimum Bathrooms</Label>
-                  <Select value={preferences.bathrooms_min?.toString()} onValueChange={(value) => 
-                    setPreferences(prev => ({ ...prev, bathrooms_min: parseFloat(value) }))
+                   <Select value={preferences.bathrooms_min?.toString()} onValueChange={(value) => 
+                    setPreferences(prev => ({ 
+                      ...prev, 
+                      bathrooms_min: value === "undefined" ? undefined : parseFloat(value) 
+                    }))
                   }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
-                      {[1, 1.5, 2, 2.5, 3, 3.5, 4].map(num => (
-                        <SelectItem key={num} value={num.toString()}>{num}+ baths</SelectItem>
-                      ))}
-                    </SelectContent>
+                     <SelectContent>
+                       <SelectItem value="undefined">Select bathrooms</SelectItem>
+                       {[1, 1.5, 2, 2.5, 3, 3.5, 4].map(num => (
+                         <SelectItem key={num} value={num.toString()}>{num}+ baths</SelectItem>
+                       ))}
+                     </SelectContent>
                   </Select>
                 </div>
               </div>
@@ -292,17 +300,21 @@ const PropertyQuestionnaire = ({ onComplete, onClose }: QuestionnaireProps) => {
               <div className="space-y-4">
                 <div>
                   <Label>Family Size</Label>
-                  <Select value={preferences.family_size?.toString()} onValueChange={(value) => 
-                    setPreferences(prev => ({ ...prev, family_size: parseInt(value) }))
+                   <Select value={preferences.family_size?.toString()} onValueChange={(value) => 
+                    setPreferences(prev => ({ 
+                      ...prev, 
+                      family_size: value === "undefined" ? undefined : parseInt(value) 
+                    }))
                   }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
-                      {[1, 2, 3, 4, 5, 6].map(num => (
-                        <SelectItem key={num} value={num.toString()}>{num} {num === 1 ? 'person' : 'people'}</SelectItem>
-                      ))}
-                    </SelectContent>
+                     <SelectContent>
+                       <SelectItem value="undefined">Select family size</SelectItem>
+                       {[1, 2, 3, 4, 5, 6].map(num => (
+                         <SelectItem key={num} value={num.toString()}>{num} {num === 1 ? 'person' : 'people'}</SelectItem>
+                       ))}
+                     </SelectContent>
                   </Select>
                 </div>
 
