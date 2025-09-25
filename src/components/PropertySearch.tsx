@@ -43,10 +43,10 @@ const PropertySearch = () => {
     if (searchFilters.maxPrice && property.price > parseInt(searchFilters.maxPrice)) {
       return false;
     }
-    if (searchFilters.bedrooms && property.bedrooms < parseInt(searchFilters.bedrooms)) {
+    if (searchFilters.bedrooms && searchFilters.bedrooms !== 'any' && property.bedrooms < parseInt(searchFilters.bedrooms)) {
       return false;
     }
-    if (searchFilters.propertyType && property.property_type !== searchFilters.propertyType) {
+    if (searchFilters.propertyType && searchFilters.propertyType !== 'all' && property.property_type !== searchFilters.propertyType) {
       return false;
     }
     return true;
@@ -95,7 +95,7 @@ const PropertySearch = () => {
                   <SelectValue placeholder="Property Type" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="single-family">Single Family</SelectItem>
                   <SelectItem value="condo">Condo</SelectItem>
                   <SelectItem value="townhouse">Townhouse</SelectItem>
@@ -127,7 +127,7 @@ const PropertySearch = () => {
                   <SelectValue placeholder="Bedrooms" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Any</SelectItem>
+                  <SelectItem value="any">Any</SelectItem>
                   <SelectItem value="1">1+</SelectItem>
                   <SelectItem value="2">2+</SelectItem>
                   <SelectItem value="3">3+</SelectItem>
